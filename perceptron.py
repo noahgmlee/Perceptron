@@ -51,7 +51,7 @@ random.seed(time.perf_counter())
 w0 = random.uniform(-5,5)
 w1 = random.uniform(-5,5)
 w2 = random.uniform(-0.1,0.1)
-w_vec = [w1, w2, w0]
+w_vec = [w0, w1, w2]
 #print (w_vec)
 slope_new = -(w0/w2)/(w0/w1)
 y_int_new = -w0/w2
@@ -74,7 +74,7 @@ while errors > 0:
         if pred != data[i,2]:
             errors = errors + 1
             if LMS:
-                error = data[i,3] - pred;
+                error = data[i,3] - np.dot(w_vec, x);
                 w_vec = np.add(w_vec, 2*rate*x*error)
             else:
                 w_vec = np.add(w_vec, rate*x*data[i,2])
